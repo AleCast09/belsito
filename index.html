@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    </head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabrielita. 💌</title>
+  <link rel="stylesheet" href="mobile.css">
+    <!-- Audio (usa el id que ya tengas; si tienes capibaraSong, lo reutilizamos) -->
+<audio id="backgroundAudio" src="Belsito/taylor22.mp3"></audio>
+
+<!-- Botón visible y fijo -->
+<button id="playMusicButton" style="position:fixed;bottom:16px;right:16px;z-index:9999;padding:10px 14px;border-radius:8px;background:#df8b8b;color:#fff;border:none;box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+  Reproducir Música
+</button>
+
+<script>
+(function(){
+  const oldBtn = document.getElementById('playMusicButton');
+  if (!oldBtn) return;
+
+  // Reemplaza el botón por un clon para eliminar event listeners previos
+  const btn = oldBtn.cloneNode(true);
+  oldBtn.parentNode.replaceChild(btn, oldBtn);
+
+  // Selecciona el audio disponible
+  const audio = document.getElementById('backgroundAudio') || document.getElementById('capibaraSong') || document.querySelector('audio');
+  if (!audio) return;
+
+  // Actualiza texto del botón según estado
+  const updateText = () => btn.textContent = audio.paused ? 'Reproducir Música' : 'Pausar Música';
+  updateText();
+
+  // Toggle play/pause
+  btn.addEventListener('click', async () => {
+    try {
+      if (audio.paused) {
+        await audio.play();
+      } else {
+        audio.pause();
+      }
+    } catch (e) {
+      console.error('Playback error:', e);
+    }
+  });
+
+  audio.addEventListener('play', updateText);
+  audio.addEventListener('pause', updateText);
+})();
+</script>
+<style>
+    body {
+        background: linear-gradient(to right, #ffd0d7, #eee8e8), url('img/meGusta.png'); /* Gradiente de fondo y ruta de la imagen de fondo */
+        background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+        background-position: center; /* Centra la imagen de fondo */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+.container {
+    text-align: center;
+    background-color: rgb(238, 212, 222);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 300px; /* Ancho fijo para el contenedor */
+}
+
+#capibara {
+    width: 100px; /* Ajusta el tamaño según sea necesario */
+    height: 100px; /* Mantiene la proporción */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    object-fit: cover; /* Asegura que la imagen cubra el área */
+    margin-bottom: 1rem;
+    border: 5px solid #f3f3f3; /* Borde dorado */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #ff7e5f; /* Color de borde al enfocar */
+    outline: none; /* Elimina el contorno por defecto */
+}
+
+button {
+    padding: 0.7rem;
+    background-color: #df8b8b; /* Color de fondo del botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #f5bebe; /* Color de fondo al pasar el mouse */
+}
+
+#message {
+    margin-top: 1rem;
+    color: red;
+}
+@media (max-width: 480px) {
+  #playMusicButton {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hola amorcito Inicia sesión 💕</h1>
+        <img id="capibara" src="Belsito/Capybara.jpg" />
+        <form id="loginForm">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p id="message"></p>
+        <audio id="capibaraSong" src=""></audio/mpeg>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            const backgroundAudio = document.getElementById('backgroundAudio');
+            backgroundAudio.play().catch(error => {
+                console.log('Autoplay was prevented:', error);
+            });
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita el envío del formulario
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const message = document.getElementById('message');
+    const song = document.getElementById('capibaraSong');
+
+    // Validación simple (puedes personalizar esto)
+    if (username === "Gab.rielar" && password === "19072025") {
+        message.style.color = "green";
+        message.textContent = "¡Inicio de sesión exitoso!";
+        song.play(); // Reproduce la canción al iniciar sesión correctamente
+    window.location.href = 'Wuuu!!.html';
+   
+    } else {
+        message.style.color = "red";
+        message.textContent = "Datos incorrectos mi vida :(";
+    }
+});
+
+    </script>
+    
+</body>
+</html>
